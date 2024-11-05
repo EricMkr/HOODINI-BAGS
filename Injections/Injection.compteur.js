@@ -17,7 +17,7 @@ if (element) {
         console.log(`Nombre de clics : ${clickCount}`);
         
         // Optionnel : Affiche le compteur sur la page
-        // document.getElementById('compteur').textContent = `Nombre de clics : ${clickCount}`;
+        document.getElementById('compteur').textContent = `Nombre de clics : ${clickCount}`;
     });
 } else {
     console.log("L'élément spécifié n'a pas été trouvé.");

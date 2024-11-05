@@ -1,0 +1,234 @@
+Pour que le code soit effectif, tu as quelques options quant à l’endroit où l’implémenter dans le code source de ta page. Le plus simple est de le placer dans un fichier JavaScript lié ou directement dans une balise <script> du fichier HTML. Voici les meilleures pratiques pour s'assurer que le code s’exécute correctement :
+
+Option 1 : Ajouter le code dans une balise <script> en bas de la page HTML
+Insère ton code JavaScript juste avant la fermeture de la balise </body> dans ton fichier HTML. Cela garantit que le DOM de la page est complètement chargé avant que le script ne s’exécute.
+
+html
+Copier le code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compteur de clics</title>
+</head>
+<body>
+
+    <!-- Exemple de bouton pour tester -->
+    <button id="bouton">Clique-moi</button>
+
+    <!-- Script pour compter les clics -->
+    <script>
+        // Ton code JavaScript pour compter les clics
+        const element = document.querySelector('#bouton');
+        let clickCount = 0;
+
+        if (element) {
+            element.addEventListener('click', function() {
+                clickCount++;
+                console.log(`Nombre de clics : ${clickCount}`);
+            });
+        } else {
+            console.log("L'élément spécifié n'a pas été trouvé.");
+        }
+    </script>
+</body>
+</html>
+Option 2 : Ajouter le code dans un fichier JavaScript externe
+Crée un fichier, par exemple compteur.js, et mets le code dedans :
+
+javascript
+Copier le code
+const element = document.querySelector('#bouton');
+let clickCount = 0;
+
+if (element) {
+    element.addEventListener('click', function() {
+        clickCount++;
+        console.log(`Nombre de clics : ${clickCount}`);
+    });
+} else {
+    console.log("L'élément spécifié n'a pas été trouvé.");
+}
+Lien vers le fichier JavaScript dans ton HTML, juste avant la fermeture de </body> :
+
+html
+Copier le code
+<body>
+    <!-- Bouton pour tester -->
+    <button id="bouton">Clique-moi</button>
+
+    <!-- Lien vers le fichier JavaScript externe -->
+    <script src="compteur.js"></script>
+</body>
+Option 3 : Placer le code dans la balise <head> avec DOMContentLoaded
+Si tu dois placer le code dans la balise <head>, utilise un écouteur DOMContentLoaded pour t’assurer que le code s’exécute uniquement après le chargement du DOM.
+
+html
+Copier le code
+<head>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const element = document.querySelector('#bouton');
+            let clickCount = 0;
+
+            if (element) {
+                element.addEventListener('click', function() {
+                    clickCount++;
+                    console.log(`Nombre de clics : ${clickCount}`);
+                });
+            } else {
+                console.log("L'élément spécifié n'a pas été trouvé.");
+            }
+        });
+    </script>
+</head>
+Ces options garantissent que ton code fonctionne sans problème au moment où la page est prête.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Si tu essaies de modifier le code source directement dans la console de développement de ton navigateur, cela peut en effet être limité. La console est idéale pour tester du code temporairement, mais les changements ne sont pas permanents et disparaîtront dès que la page sera actualisée.
+
+Voici quelques méthodes alternatives pour tester et injecter du code sans modifier directement la source de la page web :
+
+1. Utiliser la Console de la DevTools pour tester du code
+Dans la console du navigateur (disponible avec F12 ou Ctrl+Shift+I sur la plupart des navigateurs), tu peux coller du code JavaScript pour tester des fonctionnalités.
+Colle le code directement dans la console et appuie sur Entrée pour l'exécuter.
+Exemple :
+
+javascript
+Copier le code
+const element = document.querySelector('#bouton');
+let clickCount = 0;
+
+if (element) {
+    element.addEventListener('click', function() {
+        clickCount++;
+        console.log(`Nombre de clics : ${clickCount}`);
+    });
+} else {
+    console.log("L'élément spécifié n'a pas été trouvé.");
+}
+Limite : Les changements disparaîtront lorsque tu actualises la page, mais c'est une façon rapide de tester.
+
+2. Utiliser les Snippets dans la DevTools
+Les navigateurs comme Chrome et Firefox ont une fonctionnalité appelée Snippets dans leurs DevTools (Outils de développement). Cela te permet de sauvegarder du code JavaScript pour l'exécuter à tout moment sur n’importe quelle page.
+Pour créer un snippet :
+Ouvre les DevTools (F12 ou Ctrl+Shift+I).
+Va dans l’onglet Sources.
+Clique sur Snippets (dans le panneau de gauche).
+Crée un nouveau snippet, colle ton code dedans, et sauvegarde.
+Tu peux exécuter le snippet en cliquant sur le bouton Exécuter (icône de lecture).
+Cette méthode te permet de tester facilement le code sans le perdre à chaque rechargement de la page.
+3. Utiliser un bookmarklet (favori de navigateur)
+Tu peux créer un favori dans ton navigateur qui exécute du code JavaScript directement sur la page.
+Comment créer un bookmarklet :
+Crée un nouveau favori dans ton navigateur (nomme-le par exemple "Compteur de clics").
+Dans l’URL du favori, entre javascript: suivi de ton code sur une seule ligne.
+javascript
+Copier le code
+javascript:(function(){const element=document.querySelector('#bouton');let clickCount=0;if(element){element.addEventListener('click',function(){clickCount++;console.log(`Nombre de clics : ${clickCount}`);});}else{console.log("L'élément spécifié n'a pas été trouvé.");}})();
+Sauvegarde le favori.
+Lorsque tu es sur la page où tu veux exécuter le code, clique simplement sur ce favori, et il sera appliqué.
+Ces méthodes permettent d’injecter du code JavaScript sans avoir à modifier directement la source de la page. Tu pourras ainsi tester ton compteur de clics sans que les changements soient perdus à chaque actualisation.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Le nombre de clics doit être récupéré et stocké dans un fichier que le script créera et nommera "TKRM-inj-comp" et il dera uniquement être accéssible sur mot de passe. Le mot de passe sera : "TKRM2024@inj-comp"
+ChatGPT a dit :
+ChatGPT
+Pour implémenter cela, voici comment tu pourrais procéder :
+
+Stocker les clics dans un fichier : En JavaScript, les scripts exécutés dans un navigateur n'ont pas la permission d'écrire des fichiers locaux directement, pour des raisons de sécurité. Cependant, on peut utiliser des alternatives comme des requêtes vers un serveur qui crée et gère le fichier pour toi, ou stocker temporairement dans le Local Storage.
+
+Protéger l'accès au fichier par mot de passe : Cela peut être fait en intégrant une vérification côté serveur avant de fournir le fichier.
+
+Solution avec un Backend pour écrire et protéger l'accès au fichier
+Voici une approche simple qui utilise Node.js côté serveur. Ce code comprend :
+
+Un serveur qui reçoit le nombre de clics et les écrit dans un fichier.
+Une vérification par mot de passe pour accéder aux données stockées.
+1. Côté Client : Envoie le nombre de clics au serveur
+Voici un script JavaScript pour le côté client (à placer dans le fichier HTML ou JS) :
+
+javascript
+Copier le code
+const element = document.querySelector('#bouton');
+let clickCount = 0;
+
+if (element) {
+    element.addEventListener('click', function() {
+        clickCount++;
+        console.log(`Nombre de clics : ${clickCount}`);
+
+        // Envoyer les clics au serveur
+        fetch('http://localhost:3000/save-click', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ clicks: clickCount })
+        }).then(response => response.json())
+          .then(data => console.log(data))
+          .catch(error => console.error('Erreur:', error));
+    });
+} else {
+    console.log("L'élément spécifié n'a pas été trouvé.");
+}
+2. Côté Serveur : Créer un serveur Node.js pour gérer et protéger les clics
+Installer Node.js : Assure-toi que Node.js est installé sur ta machine.
+
+Créer un fichier server.js avec le code suivant :
+
+javascript
+Copier le code
+const express = require('express');
+const fs = require('fs');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = 3000;
+const PASSWORD = 'TKRM2024@inj-comp';
+
+app.use(bodyParser.json());
+
+// Route pour enregistrer les clics
+app.post('/save-click', (req, res) => {
+    const { clicks } = req.body;
+    fs.writeFileSync('TKRM-inj-comp.txt', `Nombre de clics: ${clicks}`, 'utf8');
+    res.json({ message: 'Clics enregistrés.' });
+});
+
+// Route pour accéder au fichier sous mot de passe
+app.get('/get-clicks', (req, res) => {
+    const { password } = req.query;
+    if (password === PASSWORD) {
+        const data = fs.readFileSync('TKRM-inj-comp.txt', 'utf8');
+        res.send(data);
+    } else {
+        res.status(403).send('Accès refusé : mot de passe incorrect.');
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Serveur démarré sur http://localhost:${PORT}`);
+});
+Démarrer le serveur :
+
+Installe les dépendances nécessaires (Express et Body-Parser) avec :
+bash
+Copier le code
+npm install express body-parser
+Démarre le serveur :
+bash
+Copier le code
+node server.js
+3. Accéder aux données avec le mot de passe
+Pour accéder au fichier et voir le nombre de clics, tu peux ouvrir une URL dans ton navigateur :
+
+bash
+Copier le code
+http://localhost:3000/get-clicks?password=TKRM2024@inj-comp
+Si le mot de passe est correct, le serveur te renverra le contenu du fichier TKRM-inj-comp.txt. Sinon, il renverra une erreur indiquant que l'accès est refusé.
+
+Remarque : Cette solution nécessite d'avoir un environnement Node.js et des connaissances basiques en développement backend pour pouvoir gérer le fichier et sécuriser les accès.
