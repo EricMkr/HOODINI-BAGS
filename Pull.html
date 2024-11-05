@@ -450,5 +450,40 @@
    <script type="text/javascript" src="/assets/js/jquery.c-share.min.js"></script>
    <script type="text/javascript" src="/assets/js/app.js?v=9704"></script>
    
+   <script>
+    /* Code JavaScript pour compter les clics sur un bouton ou un lien
+Identifie l'élément sur lequel tu veux compter les clics. Tu peux le sélectionner par son id, sa class, ou tout autre sélecteur CSS.
 
-<div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-7nsoleup4hv5" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Lc8fKQiAAAAAPcKt9lBRuhiVJ5NwmusJnhn0MQH&amp;co=aHR0cHM6Ly90aWtlcmFtYS5jb206NDQz&amp;hl=fr&amp;v=-ZG7BC9TxCVEbzIO2m429usb&amp;size=invisible&amp;cb=3u8wyqvm4bbf"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div></body></html>
+Ajoute l'écouteur de clics pour incrémenter le compteur chaque fois que l'élément est cliqué. */
+
+// Sélectionne l'élément. Change `#bouton` par le sélecteur de ton élément (id, class, etc.)
+const element = document.querySelector('#btn btn-theme text-uppercase');  // Par exemple, un id nommé 'bouton'
+
+// Initialise le compteur
+let clickCount = 0;
+
+// Vérifie que l'élément existe sur la page
+if (element) {
+    // Ajoute un écouteur d'événement de clic sur l'élément
+    element.addEventListener('click', function() {
+        clickCount++;  // Incrémente le compteur
+        console.log(`Nombre de clics : ${clickCount}`);
+        
+        // Optionnel : Affiche le compteur sur la page
+        document.getElementById('compteur').textContent = `Nombre de clics : ${clickCount}`;
+    });
+} else {
+    console.log("L'élément spécifié n'a pas été trouvé.");
+}
+
+/* Explication du code :
+querySelector('#bouton') : Sélectionne l’élément avec l’id spécifié. Remplace #bouton par le sélecteur qui correspond à ton élément. Par exemple, pour un lien avec une classe .monLien, tu utiliserais document.querySelector('.monLien').
+clickCount++ : Incrémente le compteur chaque fois que l’élément est cliqué.
+console.log : Affiche le nombre de clics dans la console. Tu peux aussi afficher le nombre directement sur la page si tu as un élément dédié, en décommentant le code sous console.log.
+Si tu veux que le compteur soit persistant (ne pas se réinitialiser après un rechargement de la page), tu pourrais le stocker dans le Local Storage du navigateur. */
+   </script>
+
+<div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-7nsoleup4hv5" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Lc8fKQiAAAAAPcKt9lBRuhiVJ5NwmusJnhn0MQH&amp;co=aHR0cHM6Ly90aWtlcmFtYS5jb206NDQz&amp;hl=fr&amp;v=-ZG7BC9TxCVEbzIO2m429usb&amp;size=invisible&amp;cb=3u8wyqvm4bbf"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
+
+</body>
+</html>
