@@ -1,4 +1,4 @@
-import getBoundaries from '../utils/getBoundaries';
+import getBoundaries from './getBoundaries';
 
 function getArea({ width, height }) {
   return width * height;
